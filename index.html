@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE-edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <link rel="stylesheet" href="styles.css">
+    <title>A. Deck</title>
+</head>
+<body>
+    <header>
+        <nav>
+            <a href=""><img src="logo.png" alt="" class="logo"></a>
+            <ul>
+                <li><a href="#">Cours</a></li>
+                <li><a href="#">Mes projets</a></li>
+                <li><a href="#">Me contacter</a></li>
+            </ul>
+            <img src="menu.png" data-src="menu.png" data-hover="menu-hover.png" alt="" class="menu-icon">
+        </nav>
+    </header>
+
+    <!-- Div où le graphique sera affiché -->
+    <div class="container">
+        <div id="myDiv" style="width: 80%; height: 400px;"></div>
+        <button id="gauss-btn" class="info-button">?</button>
+    </div>
+    
+
+    <section class="text">
+        <h1><span class="auto-typing"></span></h1>
+        <p>Nouveauté : <a href="det.pdf" target="_blank" id="det-pdf">Déterminants</a>.</p>
+    <a href="mailto:arthur.deck@etu.u-paris.fr">Me contacter</a> <a href="#" id="cv-link" class="cv">Mon CV</a>
+    </section>
+
+    <div class="overlay">
+
+    </div>
+
+    <div id="cv-popup" class="cv-popup">
+        <div class="cv-popup-content">
+            <span class="cv-popup-close">&times;</span>
+            <p><span class="emphasis">Du calme !</span> Pour l'instant, je suis toujours étudiant.</p>
+        </div>
+    </div>
+
+
+    <div id="gauss-popup" class="popup">
+      <div class="popup-content">
+        <h2>Alors, avez-vous reconnu l'intégrale de Gauss ?</h2>
+        <p>Alors voilà comment la calculer; On fait comme ceci etc ...</p>
+        <span class="popup-close">&times;</span>
+      </div>
+    </div>
+    
+    
+    <script src="https://unpkg.com/typed.js@2.0.16/dist/typed.umd.js"></script>
+    <script>
+        let typed = new Typed('.auto-typing', {
+            strings: ['Mathématics','Informatiques'],
+            typeSpeed: 100,
+            backSpedd: 100,
+            loop: true,
+            fadeOut: true,
+            fadeOutClass: 'typed-fade-out',
+            fadeOutDelay: 500,
+        })
+    </script>
+
+    <script>
+        let menuIcon = document.querySelector(".menu-icon");
+        menuIcon.addEventListener("mouseover", function() {
+            menuIcon.src = menuIcon.getAttribute("data-hover");
+        });
+        menuIcon.addEventListener("mouseout", function() {
+            menuIcon.src = menuIcon.getAttribute("data-src");
+        });
+    </script>
+    
+    <!-- Intégrale de Gauss -->
+    <script>
+        // Generate the grid points
+        var x = [];
+        var y = [];
+        for (var i = -2; i < 2; i += 0.1) {
+          x.push(i);
+          y.push(i);
+        }
+        
+        // Evaluate the function on the grid
+        var z = [];
+        for (var i = 0; i < x.length; i++) {
+          var row = [];
+          for (var j = 0; j < y.length; j++) {
+            var value = Math.exp(-(x[i]*x[i] + y[j]*y[j]));
+            row.push(value);
+          }
+          z.push(row);
+        }
+        
+        // Create the data for the plot
+        var data = [{
+          x: x,
+          y: y,
+          z: z,
+          type: 'surface',
+          colorscale: [[0, 'rgb(0, 0, 100)'], [1, 'rgb(0, 0, 255)']], // Custom color for the surface plot
+          showscale: false  // Hide colorbar
+        }];
+        
+        // Create the layout object to set the plot properties
+        var layout = {
+          paper_bgcolor: 'rgba(0,0,0,0)',  // Transparent background
+          plot_bgcolor: 'rgba(0,0,0,0)',   // Transparent background
+          scene: {
+            xaxis: {
+              visible: true,  // Show x-axis
+              color: '#fff',  // White x-axis
+              showticklabels: false,  // Hide x-axis tick labels
+              showgrid: true,  // Show x-axis grid
+              zeroline: false,  // Hide x-axis zero line
+              showspikes: false,  // Hide x-axis spikes
+              title: { text: "", font: { color: 'rgba(0,0,0,0)' } }
+            },
+            yaxis: {
+              visible: true,  // Show y-axis
+              color: '#fff',  // White y-axis
+              showticklabels: false,  // Hide y-axis tick labels
+              showgrid: true,  // Show y-axis grid
+              zeroline: false,  // Hide y-axis zero line
+              showspikes: false,  // Hide y-axis spikes
+              title: { text: "", font: { color: 'rgba(0,0,0,0)' } }
+            },
+            zaxis: {
+              visible: true,  // Show z-axis
+              color: '#fff',  // White z-axis
+              showticklabels: false,  // Hide z-axis tick labels
+              showgrid: true,  // Show z-axis grid
+              zeroline: false,  // Hide z-axis zero line
+              showspikes: false, // Hide z-axis spikes
+              title: { text: "", font: { color: 'rgba(0,0,0,0)' } }
+            },
+            camera: {
+              up: {x: 0, y: 0, z: 1},
+              eye: {x: -1.7428, y: 1.0707, z: 0.7100},
+            }
+          }
+        };
+        
+        // Plot the graph
+        Plotly.newPlot('myDiv', data, layout);
+    </script>    
+
+    <script>
+        // Get the popup
+        var cvPopup = document.getElementById('cv-popup');
+        
+        // Get the link that opens the popup
+        var cvLink = document.getElementById("cv-link");
+        
+        // Get the <span> element that closes the popup
+        var cvSpan = document.getElementsByClassName("cv-popup-close")[0];
+        
+        // When the user clicks the link, open the popup
+        cvLink.onclick = function() {
+            cvPopup.style.display = "block";
+        }
+        
+        // When the user clicks on <span> (x), close the popup
+        cvSpan.onclick = function() {
+            cvPopup.style.display = "none";
+        }
+        
+        // When the user clicks anywhere outside of the popup, close it
+        window.onclick = function(event) {
+            if (event.target == cvPopup) {
+                cvPopup.style.display = "none";
+            }
+        }
+    </script>
+
+  <script>
+    var gaussPopup = document.getElementById('gauss-popup');
+    var gaussBtn = document.getElementById("gauss-btn");
+    var gaussSpan = document.getElementsByClassName("popup-close")[0];
+
+    gaussBtn.onclick = function() {
+      gaussPopup.style.display = "block";
+    }
+
+    gaussSpan.onclick = function() {
+      gaussPopup.style.display = "none";
+    }
+
+    window.onclick = function(event) {
+      if (event.target == gaussPopup) {
+        gaussPopup.style.display = "none";
+      }
+    }
+  </script>
+
+</body>
+</html>
