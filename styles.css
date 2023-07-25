@@ -152,7 +152,7 @@ nav ul li a:hover {
 }
 
 #myDiv {
-    margin-bottom: -50px;  /* Adjust this value as needed */
+    margin-bottom: -100px;  /* Adjust this value as needed */
 }
 
 
@@ -235,3 +235,16 @@ nav ul li a:hover {
     padding: 0;
     cursor: pointer;
 }
+
+
+
+.custom-bullet-list {
+    list-style-position: inside;
+    padding-left: 0;
+    line-height: 1.2;  /* Ceci peut aider à réduire l'espace entre les lignes */
+  }
+  
+  .custom-bullet-list li {
+      padding-left: 1em;
+      text-indent: -.2em;
+  }
