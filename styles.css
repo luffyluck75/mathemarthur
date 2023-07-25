@@ -190,6 +190,7 @@ nav ul li a:hover {
 }
 
 #gauss-popup .popup-content {
+  font-size: 20px;
   background-color: transparent;
   color: #fff;
   border: 2px solid #2eb0f0;

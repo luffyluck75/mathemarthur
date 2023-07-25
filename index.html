@@ -8,7 +8,7 @@
     <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
     <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <link rel="stylesheet" href="styles.css">
-    <title>A. Deck</title>
+    <title>Projet #31#</title>
 </head>
 <body>
     <header>
@@ -32,7 +32,8 @@
 
     <section class="text">
         <h1><span class="auto-typing"></span></h1>
-        <p>Nouveauté : <a href="det.pdf" target="_blank" id="det-pdf">Déterminants</a>.</p>
+        <p>Nouveauté : <a href="det.pdf" target="_blank" id="det-pdf">Déterminants</a>. <br>
+        ...</p>
     <a href="mailto:arthur.deck@etu.u-paris.fr">Me contacter</a> <a href="#" id="cv-link" class="cv">Mon CV</a>
     </section>
 
@@ -50,8 +51,23 @@
 
     <div id="gauss-popup" class="popup">
       <div class="popup-content">
-        <h2>Alors, avez-vous reconnu l'intégrale de Gauss ?</h2>
-        <p>Alors voilà comment la calculer; On fait comme ceci etc ...</p>
+        <h2>Alors, avez-vous reconnu l'intégrale de Gauss ?</h2> <br>
+        <p>
+          Notons \(I = \int_{-\infty}^{+\infty} e^{-x^2}~dx \), l'intégrale de Gauss. <br>
+          Nous avons alors \( I^2 =  \int_{-\infty}^{+\infty} e^{-x^2}~dx \dot \int_{-\infty}^{+\infty} e^{-y^2}~dy = \int\limits_{\mathbb{R}^2} \int e^{-(x^2+y^2)} dx dy \). <br>
+          Effectuons un changement de variable pour passer en coordonnées polaires : \( (x,y) = \varphi (r,\theta) = (r \cos (\theta), r \sin(\theta)) \). <br>
+          \( \varphi : [0,+\infty[ x [0, 2\pi[ \longrightarrow \mathbb R^2 \) est bijective est de classe \( C^1 \). <br>
+          On peut donc appliquer notre changement de variable et on obtient :
+          \[
+            I^2 = \int_{0}^{2\pi} \int_{0}^{+\infty} e^{-(r^2\cos^2(\theta) + r^2\sin^2(\theta))} ~ \begin{vmatrix} \cos \theta & -r \cos \theta \\ \sin \theta & r \cos \theta \end{vmatrix} ~ dr ~d\theta 
+          \]
+          simplifions :
+          \[
+            I^2 = \int_{0}^{2\pi} \int_{0}^{+\infty} r e^{-(r^2)} dr d\theta = 2 \pi \int_{0}^{+\infty} r e^{-(r^2)} dr = 2\pi \left[ \frac{-e^{-r^2}}{2} \right]_0^{+\infty} = \pi.
+          \]
+          Or, comme l'on sait que \( \exp \) est toujours positive, on peut conclure que \(   I = |\sqrt(\pi)| = \pi  \). \<br>
+          Bravo !
+        </p>
         <span class="popup-close">&times;</span>
       </div>
     </div>
