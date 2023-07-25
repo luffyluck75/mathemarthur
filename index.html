@@ -25,7 +25,8 @@
 
     <!-- Div où le graphique sera affiché -->
     <div class="container">
-        <div id="myDiv" style="width: 80%; height: 400px;"></div>
+        <div id="myDiv2" style="width: 80%; height: 400px;"></div>
+        <div id="myDiv1" style="width: 80%; height: 400px;"></div>
         <button id="gauss-btn" class="info-button">?</button>
     </div>
     
@@ -53,6 +54,9 @@
 
     <div id="gauss-popup" class="popup">
       <div class="popup-content">
+        <h2>Un cube bizarre ?</h2>
+        <p>Non, ce n'est un espace vectorielle de dimenssions 3 sur le corps fini \( \mathbb Z/3 \mathbb Z\)</p>
+        <br>
         <h2>Alors, avez-vous reconnu l'intégrale de Gauss ?</h2> <br>
         <p>
           Notons \(I = \int_{-\infty}^{+\infty} e^{-x^2}~dx \), l'intégrale de Gauss. <br>
@@ -74,11 +78,10 @@
       </div>
     </div>
     
-    
     <script src="https://unpkg.com/typed.js@2.0.16/dist/typed.umd.js"></script>
     <script>
         let typed = new Typed('.auto-typing', {
-            strings: ['Mathématics','Informatiques'],
+            strings: ['Mathématics','Informatiques','Sciences'],
             typeSpeed: 100,
             backSpedd: 100,
             loop: true,
@@ -169,7 +172,7 @@
         };
         
         // Plot the graph
-        Plotly.newPlot('myDiv', data, layout);
+        Plotly.newPlot('myDiv1', data, layout);
     </script>    
 
     <script>
@@ -218,6 +221,59 @@
         gaussPopup.style.display = "none";
       }
     }
+  </script>
+
+<script>
+  // Générez les points de la grille
+  var x = [];
+  var y = [];
+  var z = [];
+  
+  for (var i = 0; i < 3; i++) {
+    for (var j = 0; j < 3; j++) {
+      for (var k = 0; k < 3; k++) {
+        x.push(i);
+        y.push(j);
+        z.push(k);
+      }
+    }
+  }
+  
+  // Créez les données pour le tracé
+  var data = [{
+    x: x,
+    y: y,
+    z: z,
+    mode: 'markers',
+    marker: {
+      size: 8,
+      color: '#2eb0f0', // Custom color for the points
+    },
+    type: 'scatter3d'
+  }];
+  
+  // Créez l'objet de disposition pour définir les propriétés du tracé
+  var layout = {
+    paper_bgcolor: 'rgba(0,0,0,0)',  // Transparent background
+    plot_bgcolor: 'rgba(0,0,0,0)',   // Transparent background
+    scene: {
+      xaxis: {
+        visible: true,  // Show x-axis
+        color: '#fff',  // White x-axis
+      },
+      yaxis: {
+        visible: true,  // Show y-axis
+        color: '#fff',  // White y-axis
+      },
+      zaxis: {
+        visible: true,  // Show z-axis
+        color: '#fff',  // White z-axis
+      },
+    }
+  };
+  
+  // Tracer le graphique
+  Plotly.newPlot('myDiv2', data, layout);
   </script>
 
 </body>

@@ -151,7 +151,7 @@ nav ul li a:hover {
     color: #2eb0f0;
 }
 
-#myDiv {
+#myDiv1, #myDiv2 {
     margin-bottom: -100px;  /* Adjust this value as needed */
 }
 
@@ -194,7 +194,7 @@ nav ul li a:hover {
   background-color: transparent;
   color: #fff;
   border: 2px solid #2eb0f0;
-  margin: 15% auto;
+  margin: 10% auto;
   padding: 20px;
   width: 80%;
   box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
@@ -204,11 +204,12 @@ nav ul li a:hover {
   color: #2eb0f0;
 }
 
-.popup-close {
+#gauss-popup .popup-close {
   color: #aaaaaa;
   float: right;
   font-size: 28px;
   font-weight: bold;
+  bottom: -200;
 }
 
 .popup-close:hover,
