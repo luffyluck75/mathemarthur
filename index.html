@@ -8,7 +8,7 @@
     <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
     <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <link rel="stylesheet" href="styles.css">
-    <title>Projet #31#</title>
+    <title>mathArthur</title>
 </head>
 <body>
     <header>
@@ -32,11 +32,22 @@
     
 
     <section class="text">
-        <h1><span class="auto-typing"></span></h1>
-        <p>Nouveauté : <a href="det.pdf" target="_blank" id="pdf">Déterminants</a>(en vérification). <br>
+        <h1>Je suis : <span class="auto-typing"></span></h1>
+        <h2 id="derniere_publi">Dernière publication :</h2> <a href="Déterminant.pdf" target="_blank" id="pdf">Déterminants</a>(en vérification). <br>
+        <br>
+
+        <div id="latest-video" style="display: flex; align-items: center;">
+          <h2 id="derniere_publi">Dernière vidéo :</h2>
+          <!-- La vidéo sera insérée ici -->
+        </div>
+        
+          <!---
         Anciennes publications : <br>
-          - <a href="Sommes_rapport.pdf" target="_blank" id="pdf">Doubles sommations</a>(avec M. BOISDUR)<br>
-          - <a href="Trigo.pdf" target="_blank" id="pdf">Notes trigonométriques</a></p>
+          - <a href="Doubles_Sommations.pdf" target="_blank" id="pdf">Doubles sommations</a>(avec M. BOISDUR)<br>
+          - <a href="Notes_Trigonométriques.pdf" target="_blank" id="pdf">Notes trigonométriques</a>
+          -->
+
+    <br>  <br>    
     <a href="mailto:arthur.deck@etu.u-paris.fr">Me contacter</a> <a href="#" id="cv-link" class="cv">Mon CV</a>
     </section>
 
@@ -71,17 +82,18 @@
           \[
             I^2 = \int_{0}^{2\pi} \int_{0}^{+\infty} r e^{-(r^2)} dr d\theta = 2 \pi \int_{0}^{+\infty} r e^{-(r^2)} dr = 2\pi \left[ \frac{-e^{-r^2}}{2} \right]_0^{+\infty} = \pi.
           \]
-          Or, comme l'on sait que \( \exp \) est toujours positive, on peut conclure que \(   I = |\sqrt(\pi)| = \pi  \). \<br>
+          Or, comme l'on sait que \( \exp \) est toujours positive, on peut conclure que \(   I = |\sqrt\pi| = + \sqrt\pi  \). <br>
           Bravo !
         </p>
         <span class="popup-close">&times;</span>
       </div>
     </div>
     
+    
     <script src="https://unpkg.com/typed.js@2.0.16/dist/typed.umd.js"></script>
     <script>
         let typed = new Typed('.auto-typing', {
-            strings: ['Mathématics','Informatiques','Sciences'],
+            strings: ['arthur','codeurs','mathématicien','passionné'],
             typeSpeed: 100,
             backSpedd: 100,
             loop: true,
@@ -275,6 +287,24 @@
   // Tracer le graphique
   Plotly.newPlot('myDiv2', data, layout);
   </script>
+
+<script>
+  async function getLatestVideo() {
+    const response = await fetch('https://www.googleapis.com/youtube/v3/search?part=snippet&channelId=UCiC5oxBXwUEYm1YQQsKRo_w&maxResults=1&order=date&type=video&key=AIzaSyCjBLyWaMXfP0igTxH5cxAuwxmTSbiLe3M');
+    const data = await response.json();
+    const videoId = data.items[0].id.videoId;
+  
+    const videoContainer = document.getElementById('latest-video');
+    videoContainer.innerHTML += `
+      <iframe width="560" height="315" src="https://www.youtube.com/embed/${videoId}?controls=0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+    `;
+  }
+  
+  getLatestVideo();
+  </script>
+  
+
+
 
 </body>
 </html>
