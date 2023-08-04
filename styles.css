@@ -226,15 +226,36 @@ nav ul li a:hover {
     font-size: 30px;
 }
 
+.pdf_tab {
+    color: #ffffff; 
+    text-decoration: none;
+    font-size: 10; /* Vous pouvez changer la taille de police que vous souhaitez ici. */
+    background: none;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+}
+
+.pdf_tab:hover {
+    color: #2eb0f0;
+}
+
 @media only screen and (max-width: 600px) {
-    #myDiv1 #myDiv2 #gauss-btn {
+    .container {
       display: none;
+    }
+
+    .icon-text span {
+        display: none;
+    }
+
+    .icon-text img.logo {
+        display: none;
     }
 }
   
 #derniere_publi {
     display: inline;
-    font-size: 30px;
 }
 
 body::before {
@@ -244,7 +265,60 @@ body::before {
     right: 0;
     bottom: 0;
     left: 0;
-    background: url(fond.jpg) center center no-repeat;
+    background: url(background.jpg) center center no-repeat;
     background-size: cover;
     z-index: -1;
+}
+
+.icon-text {
+  display: flex;
+  align-items: center;
+}
+
+.icon-text i {
+  margin-right: 5px;
+  margin-bottom: 2px;
+}
+
+.image-container {
+    position: relative;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.image-container img {
+    max-width: 100%;
+    height: auto;
+}
+
+.image-container .overlay {
+    position: absolute;
+    top: 5%;
+    left: 30%;
+    width: 40%;
+    height: 50%;
+    color: #fff;
+    display: flex;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+}
+
+.image-container .overlay p {
+    font-size: 24px;
+}
+
+.image-container .overlay #repport {
+    color: #ffffff;
+    position: absolute;
+    top: 97%;
+    left: 40%;
+    width: 20%;
+    height: 10%;
+    text-decoration: none;
+}
+
+.image-container .overlay #repport:hover {
+    color: #2eb0f0;
 }
