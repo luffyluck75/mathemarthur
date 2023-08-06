@@ -33,5 +33,15 @@
             <a href="mailto:arthur.deck@etu.u-paris.fr?subject=Signalement d'une erreur sur 'exemple.pdf'" id="repport">Signaler une erreur</a>
         </div>
     </div>
+
+    <script>
+        let menuIcon = document.querySelector(".menu-icon");
+        menuIcon.addEventListener("mouseover", function() {
+            menuIcon.src = menuIcon.getAttribute("data-hover");
+        });
+        menuIcon.addEventListener("mouseout", function() {
+            menuIcon.src = menuIcon.getAttribute("data-src");
+        });
+    </script>
 </body>
 </html>
